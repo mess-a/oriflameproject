@@ -97,6 +97,7 @@
             android:background="@drawable/joinbtn"
             android:elevation="2dp"
             android:text="Join Us"
+            android:onClick="joinUs"
             android:textAllCaps="false"
             android:textColor="#ffffff" />
 
