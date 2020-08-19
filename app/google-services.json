@@ -1,42 +1,34 @@
 {
   "project_info": {
-    "project_number": "547737817841",
-    "firebase_url": "https://oriflameproject-46ff7.firebaseio.com",
-    "project_id": "oriflameproject-46ff7",
-    "storage_bucket": "oriflameproject-46ff7.appspot.com"
+    "project_number": "1075322007683",
+    "firebase_url": "https://oriflame-95df3.firebaseio.com",
+    "project_id": "oriflame-95df3",
+    "storage_bucket": "oriflame-95df3.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:547737817841:android:4fa1cda29f6fff7fbdcf50",
+        "mobilesdk_app_id": "1:1075322007683:android:21f485ea84f793d3e46bb6",
         "android_client_info": {
           "package_name": "com.example.android_oriflame"
         }
       },
       "oauth_client": [
         {
-          "client_id": "547737817841-sbjos011q3al0s6e2k12ljuf6tf7a69f.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.android_oriflame",
-            "certificate_hash": "1b790fabbb438163755922c09d0659007bc699a4"
-          }
-        },
-        {
-          "client_id": "547737817841-vi59t77tb00eglihbk61po0cjuf1kt9d.apps.googleusercontent.com",
+          "client_id": "1075322007683-p54sjnmtq2s4r3pi82uk92f3p3ojn2v5.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBABmMor6kJ8WWVTAn1PO-Tb-nh_cqZx5c"
+          "current_key": "AIzaSyDOGUvF2xXSKS2A1jWV2lnCtDC7--3f-GQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "547737817841-vi59t77tb00eglihbk61po0cjuf1kt9d.apps.googleusercontent.com",
+              "client_id": "1075322007683-p54sjnmtq2s4r3pi82uk92f3p3ojn2v5.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

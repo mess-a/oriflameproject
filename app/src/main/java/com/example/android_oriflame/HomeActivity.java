@@ -15,7 +15,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void signUp(View view) {
-        Intent dsp = new Intent(HomeActivity.this,signin.class);
+        Intent dsp = new Intent(HomeActivity.this, SignUpActivity.class);
         startActivity(dsp);
     }
 
