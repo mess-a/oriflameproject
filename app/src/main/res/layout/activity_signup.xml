@@ -57,59 +57,58 @@
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/name"
             android:layout_width="280dp"
             android:layout_height="45dp"
             android:layout_marginTop="35dp"
             android:background="@drawable/btn"
             android:elevation="2dp"
-            android:hint=" Your Name"
+            android:hint="Name"
             android:inputType="text"
             android:paddingLeft="15dp"
             android:textColorHint="#ffffff" />
 
         <EditText
+            android:id="@+id/email"
             android:layout_width="280dp"
             android:layout_height="45dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/btn"
             android:elevation="2dp"
-            android:hint=" Email "
+            android:hint="Email"
             android:inputType="textEmailAddress"
             android:paddingLeft="15dp"
             android:textColorHint="#ffffff" />
 
         <EditText
+            android:id="@+id/password"
             android:layout_width="280dp"
             android:layout_height="45dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/btn"
             android:elevation="2dp"
-            android:hint=" Password "
+            android:hint="Password"
             android:inputType="textPassword"
             android:paddingLeft="15dp"
             android:textColorHint="#ffffff" />
 
         <Button
-            android:id="@+id/joinus"
+            android:id="@+id/signup"
             android:layout_width="280dp"
             android:layout_height="45dp"
             android:layout_marginTop="25dp"
             android:background="@drawable/joinbtn"
             android:elevation="2dp"
-            android:text="Join Us"
-            android:onClick="joinUs"
+            android:text="Sign Up"
             android:textAllCaps="false"
             android:textColor="#ffffff" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="sans-serif-medium"
-            android:textColor="#ffffff"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-
+            android:visibility="invisible" />
 
     </LinearLayout>
 

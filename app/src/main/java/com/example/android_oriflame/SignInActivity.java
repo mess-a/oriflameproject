@@ -3,6 +3,7 @@ package com.example.android_oriflame;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -19,42 +20,41 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignInActivity extends AppCompatActivity {
 
-    EditText name, email, password;
+    EditText email, password;
     ProgressBar progress;
     FirebaseAuth fAuth;
-    Button signUpButton;
+    Button signInButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
+        setContentView(R.layout.activity_signin);
 
-        this.name = findViewById(R.id.name);
         this.email = findViewById(R.id.email);
         this.password = findViewById(R.id.password);
         this.progress = findViewById(R.id.progressBar);
-        this.signUpButton = findViewById(R.id.signup);
+        this.signInButton = findViewById(R.id.signin);
+
+        // Firebase instance
+        this.fAuth = FirebaseAuth.getInstance();
 
         // Set progress bar color
         this.progress.setProgressTintList(ColorStateList.valueOf(Color.CYAN));
 
-        // Firebase
-        this.fAuth = FirebaseAuth.getInstance();
-
         // Check if user is already logged in
+        // If so, redirect them
         if (fAuth.getCurrentUser() != null) {
             startActivity(new Intent(getApplicationContext(), HomePageActivity.class));
             finish();
         }
 
-        // Sign Up On Click
-        this.signUpButton.setOnClickListener(new View.OnClickListener() {
+        this.signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Validation
-                EditText[] arr = {name, email, password};
+                EditText[] arr = {email, password};
 
                 for (EditText editText : arr) {
                     if (TextUtils.isEmpty(editText.getText().toString().trim())) {
@@ -69,17 +69,14 @@ public class SignUpActivity extends AppCompatActivity {
                 // Show progress
                 progress.setVisibility(View.VISIBLE);
 
-                // Create user
-                fAuth.createUserWithEmailAndPassword(em, pw).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                fAuth.signInWithEmailAndPassword(em, pw).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        // Log user in
-                        // Redirect them
                         if (task.isSuccessful()) {
-                            Toast.makeText(SignUpActivity.this, "Successfully Registered", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignInActivity.this, "Signed In!", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), HomePageActivity.class));
                         } else {
-                            Toast.makeText(SignUpActivity.this, "Error Creating User: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignInActivity.this, "Wrong Email or Password!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -87,8 +84,8 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
-    public void signIn(View view) {
-        Intent dsp = new Intent(SignUpActivity.this, SignInActivity.class);
+    public void signUp(View view) {
+        Intent dsp = new Intent(SignInActivity.this, SignUpActivity.class);
         startActivity(dsp);
     }
 }

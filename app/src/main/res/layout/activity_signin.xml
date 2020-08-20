@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="10dp"
     android:background="@drawable/background"
-    tools:context=".HomeActivity">
+    tools:context=".SignInActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,6 +43,7 @@
 
 
         <EditText
+            android:id="@+id/email"
             android:layout_width="280dp"
             android:layout_height="45dp"
             android:layout_gravity="center"
@@ -55,6 +56,7 @@
             android:paddingLeft="15dp" />
 
         <EditText
+            android:id="@+id/password"
             android:layout_width="280dp"
             android:layout_height="45dp"
             android:layout_gravity="center"
@@ -67,6 +69,7 @@
             android:paddingLeft="15dp" />
 
         <Button
+            android:id="@+id/signin"
             android:layout_width="280dp"
             android:layout_height="45dp"
             android:layout_gravity="center"
@@ -75,6 +78,13 @@
             android:text="Log In"
             android:textAllCaps="false"
             android:textColor="#ffffff" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible" />
 
     </LinearLayout>
 
