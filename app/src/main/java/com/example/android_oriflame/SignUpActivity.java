@@ -19,8 +19,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.zip.InflaterInputStream;
-
 public class SignUpActivity extends AppCompatActivity {
 
     EditText name, email, password;
@@ -47,7 +45,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         // Check if user is already logged in
         if (fAuth.getCurrentUser() != null) {
-            startActivity(new Intent(getApplicationContext(), HomePageActivity.class));
+            startActivity(new Intent(getApplicationContext(), NavigationActivity.class));
             finish();
         }
 
@@ -79,7 +77,7 @@ public class SignUpActivity extends AppCompatActivity {
                         // Redirect them
                         if (task.isSuccessful()) {
                             Toast.makeText(SignUpActivity.this, "Successfully Registered", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), HomePageActivity.class));
+                            startActivity(new Intent(getApplicationContext(), NavigationActivity.class));
                         } else {
                             Toast.makeText(SignUpActivity.this, "Error Creating User: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             progress.setVisibility(View.INVISIBLE);

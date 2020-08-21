@@ -9,6 +9,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -17,16 +19,20 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class HomePageActivity extends AppCompatActivity {
+public class NavigationActivity extends AppCompatActivity {
     FirebaseAuth fAuth;
 
     Button LogOutButton;
+
+    public String page_name;
     private ActionBarDrawerToggle actionBarDrawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
+        setContentView(R.layout.activity_navigation);
+
+        page_name = "Home";
 
         this.bootstrapNav();
     }
@@ -46,10 +52,10 @@ public class HomePageActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Home");
+        getSupportActionBar().setTitle(this.page_name);
 
         DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(HomePageActivity.this, drawerLayout, R.string.drawer_open, R.string.drawer_close);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(NavigationActivity.this, drawerLayout, R.string.drawer_open, R.string.drawer_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
@@ -64,15 +70,11 @@ public class HomePageActivity extends AppCompatActivity {
             }
         });
 
-//        // Check admin user (DEBUG)
-//        TextView center_field = findViewById(R.id.center_text_field);
-//        if (Helper.isAdmin()) {
-//            center_field.setText("Welcome, admin.");
-//        } else {
-//            center_field.setText("Welcome, non-admin.");
-//        }
+        // Check admin user
+        if (Helper.isAdmin()) {
+            navigationView.getMenu().findItem(R.id.admin_menu).setVisible(true);
+        }
     }
-
 
     private void UserMenuSelector(MenuItem item) {
         String url;
@@ -107,10 +109,12 @@ public class HomePageActivity extends AppCompatActivity {
                 break;
 
             case R.id.add_product:
-                if (Helper.isAdmin()) {
-                    startActivity(new Intent(getApplicationContext(), AddProductActivity.class));
-                    finish();
-                }
+                startActivity(new Intent(getApplicationContext(), AddProductActivity.class));
+                finish();
+                break;
+
+            case R.id.all_products:
+                // All products admin
                 break;
         }
     }

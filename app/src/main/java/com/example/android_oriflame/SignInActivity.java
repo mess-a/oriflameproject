@@ -3,7 +3,7 @@ package com.example.android_oriflame;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -27,6 +27,7 @@ public class SignInActivity extends AppCompatActivity {
     FirebaseAuth fAuth;
     Button signInButton;
 
+    @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +47,7 @@ public class SignInActivity extends AppCompatActivity {
         // Check if user is already logged in
         // If so, redirect them
         if (fAuth.getCurrentUser() != null) {
-            startActivity(new Intent(getApplicationContext(), HomePageActivity.class));
+            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
             finish();
         }
 
@@ -74,7 +75,7 @@ public class SignInActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(SignInActivity.this, "Signed In!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), HomePageActivity.class));
+                            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                         } else {
                             Toast.makeText(SignInActivity.this, "Wrong Email or Password!", Toast.LENGTH_SHORT).show();
                             progress.setVisibility(View.INVISIBLE);
