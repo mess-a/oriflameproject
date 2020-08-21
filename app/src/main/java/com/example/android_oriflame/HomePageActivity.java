@@ -7,7 +7,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -26,8 +28,6 @@ public class HomePageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        this.LogOutButton = findViewById(R.id.logout);
-
         // Get instance
         this.fAuth = FirebaseAuth.getInstance();
 
@@ -38,22 +38,11 @@ public class HomePageActivity extends AppCompatActivity {
             finish();
         }
 
-        this.LogOutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Signout
-                fAuth.signOut();
-                // Redirect
-                startActivity(new Intent(getApplicationContext(), SignInActivity.class));
-                finish();
-            }
-        });
-
         // Navigation toolbar
-        Toolbar toolbar = findViewById(R.id.toolBar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Navigation Drawer");
+        getSupportActionBar().setTitle("Home");
 
         DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(HomePageActivity.this, drawerLayout, R.string.drawer_open, R.string.drawer_close);
@@ -73,14 +62,35 @@ public class HomePageActivity extends AppCompatActivity {
     }
 
     private void UserMenuSelector(MenuItem item) {
+        String url;
+        Uri uri;
+        Intent intent;
+
         switch (item.getItemId()) {
             case R.id.facebookPage:
+                url = "http://www.facebook.com"; // Facebook link dahna tur
+                uri = Uri.parse(url);
+                intent = new Intent(Intent.ACTION_VIEW, uri);
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
                 break;
 
             case R.id.instagramPage:
+                url = "http://www.intagram.com"; // Instagram link dahna tur
+                uri = Uri.parse(url);
+                intent = new Intent(Intent.ACTION_VIEW, uri);
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
                 break;
 
             case R.id.logout:
+                // Signout
+                fAuth.signOut();
+                // Redirect
+                startActivity(new Intent(getApplicationContext(), SignInActivity.class));
+                finish();
                 break;
         }
     }

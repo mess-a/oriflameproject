@@ -19,6 +19,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.zip.InflaterInputStream;
+
 public class SignUpActivity extends AppCompatActivity {
 
     EditText name, email, password;
@@ -80,6 +82,7 @@ public class SignUpActivity extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(), HomePageActivity.class));
                         } else {
                             Toast.makeText(SignUpActivity.this, "Error Creating User: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            progress.setVisibility(View.INVISIBLE);
                         }
                     }
                 });

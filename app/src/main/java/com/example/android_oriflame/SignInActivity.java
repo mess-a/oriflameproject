@@ -77,6 +77,7 @@ public class SignInActivity extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(), HomePageActivity.class));
                         } else {
                             Toast.makeText(SignInActivity.this, "Wrong Email or Password!", Toast.LENGTH_SHORT).show();
+                            progress.setVisibility(View.INVISIBLE);
                         }
                     }
                 });
