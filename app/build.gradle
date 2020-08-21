@@ -40,4 +40,5 @@ dependencies {
     implementation 'com.github.eddydn:AdvancedNestedScrollView:1.1'
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.google.android.material:material:1.1.0'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }
