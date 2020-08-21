@@ -9,6 +9,10 @@
             android:id="@+id/instagramPage"
             android:icon="@drawable/ic_person"
             android:title="instagram" />
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/ic_person"
+            android:title="logout"/>
     </group>
 
     <item android:title="Menu">
@@ -30,5 +34,4 @@
                 android:title="Add Product"/>
         </menu>
     </item>
-
 </menu>
