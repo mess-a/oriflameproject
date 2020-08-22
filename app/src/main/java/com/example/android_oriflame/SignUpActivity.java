@@ -15,9 +15,16 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -25,6 +32,7 @@ public class SignUpActivity extends AppCompatActivity {
     ProgressBar progress;
     FirebaseAuth fAuth;
     Button signUpButton;
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +50,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         // Firebase
         this.fAuth = FirebaseAuth.getInstance();
+        this.db = FirebaseFirestore.getInstance();
 
         // Check if user is already logged in
         if (fAuth.getCurrentUser() != null) {
@@ -65,6 +74,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                 String em = email.getText().toString().trim();
                 String pw = password.getText().toString().trim();
+                final String user_name = name.getText().toString().trim();
 
                 // Show progress
                 progress.setVisibility(View.VISIBLE);
@@ -76,8 +86,25 @@ public class SignUpActivity extends AppCompatActivity {
                         // Log user in
                         // Redirect them
                         if (task.isSuccessful()) {
-                            Toast.makeText(SignUpActivity.this, "Successfully Registered", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), NavigationActivity.class));
+                            Map<String, Object> user_data = new HashMap<>();
+                            user_data.put("id", task.getResult().getUser().getUid());
+                            user_data.put("user_name", user_name);
+
+                            db.collection("user_data")
+                                    .add(user_data)
+                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                        @Override
+                                        public void onSuccess(DocumentReference documentReference) {
+                                            Toast.makeText(SignUpActivity.this, "Successfully Registered", Toast.LENGTH_SHORT).show();
+                                            startActivity(new Intent(getApplicationContext(), NavigationActivity.class));
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(SignUpActivity.this, "Error Creating User: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
                         } else {
                             Toast.makeText(SignUpActivity.this, "Error Creating User: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             progress.setVisibility(View.INVISIBLE);

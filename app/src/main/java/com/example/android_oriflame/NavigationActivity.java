@@ -14,18 +14,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class NavigationActivity extends AppCompatActivity {
     FirebaseAuth fAuth;
 
-    Button LogOutButton;
-
     public String page_name;
     private ActionBarDrawerToggle actionBarDrawerToggle;
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +45,7 @@ public class NavigationActivity extends AppCompatActivity {
     public void bootstrapNav() {
         // Get instance
         this.fAuth = FirebaseAuth.getInstance();
+        this.db = FirebaseFirestore.getInstance();
 
         // Redirect user if not logged in
         if (fAuth.getCurrentUser() == null) {
@@ -60,7 +66,7 @@ public class NavigationActivity extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
 
         NavigationView navigationView = findViewById(R.id.navigation_view);
-        View view = navigationView.inflateHeaderView(R.layout.navigation_header);
+        final View navView = navigationView.inflateHeaderView(R.layout.navigation_header);
         navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -74,6 +80,10 @@ public class NavigationActivity extends AppCompatActivity {
         if (Helper.isAdmin()) {
             navigationView.getMenu().findItem(R.id.admin_menu).setVisible(true);
         }
+
+        // Profile Email
+        final TextView pName = navView.findViewById(R.id.profile_name);
+        pName.setText(fAuth.getCurrentUser().getEmail());
     }
 
     private void UserMenuSelector(MenuItem item) {
@@ -82,6 +92,11 @@ public class NavigationActivity extends AppCompatActivity {
         Intent intent;
 
         switch (item.getItemId()) {
+            case R.id.homePage:
+                startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                finish();
+                break;
+
             case R.id.facebookPage:
                 url = "http://www.facebook.com"; // Facebook link dahna tur
                 uri = Uri.parse(url);
@@ -108,13 +123,14 @@ public class NavigationActivity extends AppCompatActivity {
                 finish();
                 break;
 
-            case R.id.add_product:
-                startActivity(new Intent(getApplicationContext(), AddProductActivity.class));
+            case R.id.all_products:
+                startActivity(new Intent(getApplicationContext(), AllProductsActivity.class));
                 finish();
                 break;
 
-            case R.id.all_products:
-                // All products admin
+            case R.id.add_product:
+                startActivity(new Intent(getApplicationContext(), AddProductActivity.class));
+                finish();
                 break;
         }
     }

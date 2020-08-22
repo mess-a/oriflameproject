@@ -1,52 +1,45 @@
 package com.example.android_oriflame;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestBuilder;
-import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
-import java.util.Map;
 
-public class HomeActivity extends NavigationActivity {
+public class AllProductsActivity extends NavigationActivity {
 
     FirebaseFirestore db;
-    StorageReference storageRef;
-    private ArrayList<Map<String, Object>> list;
-    private ArrayList<RequestBuilder<Drawable>> images;
+    private ArrayList<QueryDocumentSnapshot> arrayList;
+    private ArrayList<DocumentReference> docList;
     private RecyclerView product_list;
     private RecyclerView.LayoutManager layoutManager;
-    private HomeProductsAdapter adapter;
+    private AllProductsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_all_products);
+
+        this.page_name = "All Products";
 
         super.bootstrapNav();
 
         this.db = FirebaseFirestore.getInstance();
-        this.storageRef = FirebaseStorage.getInstance().getReference();
-        this.list = new ArrayList<>();
-        this.images = new ArrayList<>();
-
-        this.product_list = findViewById(R.id.home_products);
-        this.adapter = new HomeProductsAdapter(this.list, this.images);
-        this.layoutManager = new GridLayoutManager(this, 2);
+        this.arrayList = new ArrayList<>();
+        this.docList = new ArrayList<>();
+        this.product_list = findViewById(R.id.products_list);
+        this.adapter = new AllProductsAdapter(this.arrayList, this.docList);
+        this.layoutManager = new LinearLayoutManager(this);
         this.product_list.setLayoutManager(this.layoutManager);
         this.product_list.setAdapter(this.adapter);
         this.product_list.setHasFixedSize(true);
@@ -58,9 +51,9 @@ public class HomeActivity extends NavigationActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
+                                docList.add(document.getReference());
                                 if (!document.getData().isEmpty()) {
-                                    list.add(document.getData());
-                                    images.add(getImage(document.getId()));
+                                    arrayList.add(document);
                                 }
                                 adapter.notifyDataSetChanged();
                             }
@@ -69,10 +62,5 @@ public class HomeActivity extends NavigationActivity {
                         }
                     }
                 });
-    }
-
-    private RequestBuilder<Drawable> getImage(final String pid) {
-        StorageReference imageRef = this.storageRef.child("images/" + pid + ".jpg");
-        return Glide.with(this).load(imageRef);
     }
 }

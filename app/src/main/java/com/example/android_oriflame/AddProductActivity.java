@@ -3,7 +3,6 @@ package com.example.android_oriflame;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,10 +14,15 @@ import androidx.annotation.Nullable;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class AddProductActivity extends NavigationActivity implements View.OnClickListener {
 
@@ -28,6 +32,8 @@ public class AddProductActivity extends NavigationActivity implements View.OnCli
     private Uri filePath;
     private StorageReference storageRef;
     private ProgressBar progressBar;
+    private String fileName;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +56,7 @@ public class AddProductActivity extends NavigationActivity implements View.OnCli
         this.bUpload.setOnClickListener(this);
 
         this.storageRef = FirebaseStorage.getInstance().getReference();
+        this.db = FirebaseFirestore.getInstance();
     }
 
     @Override
@@ -61,8 +68,8 @@ public class AddProductActivity extends NavigationActivity implements View.OnCli
         }
     }
 
-    private void uploadFile() {
-        StorageReference imageRef = storageRef.child("images/" + this.pName.getText().toString().toLowerCase() + ".jpg");
+    private void uploadFile(final DocumentReference doc) {
+        StorageReference imageRef = storageRef.child("images/" + doc.getId() + ".jpg");
 
         imageRef.putFile(filePath)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -80,6 +87,7 @@ public class AddProductActivity extends NavigationActivity implements View.OnCli
                                 "Unable to upload image, try again!",
                                 Toast.LENGTH_SHORT
                         ).show();
+                        doc.delete();
                     }
                 }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                     @Override
@@ -87,7 +95,6 @@ public class AddProductActivity extends NavigationActivity implements View.OnCli
                         progressBar.setVisibility(View.VISIBLE);
                         progressBar.setMax(100);
                         double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-                        Log.d("progress", "onProgress: " + progress);
                         progressBar.setProgress((int)progress, true);
                     }
                 });
@@ -105,7 +112,47 @@ public class AddProductActivity extends NavigationActivity implements View.OnCli
         if (v == this.bImage) {
             this.showImageChooser();
         } else if (v == this.bUpload) {
-            this.uploadFile();
+            EditText[] et = { this.pName, this.pDesc, this.pPrice };
+
+            // Data validation
+            for (EditText editText : et) {
+                if (editText.getText().toString().trim().isEmpty()) {
+                    editText.setError("Field should not be empty!");
+                    return;
+                }
+            }
+
+            String pName = this.pName.getText().toString().trim();
+            String pDesc = this.pDesc.getText().toString().trim();
+            String pPrice = this.pPrice.getText().toString().trim();
+            String pDiscount = this.pDiscount.getText().toString().trim();
+
+            if (this.pDiscount.getText().toString().isEmpty()) {
+                pDiscount = String.valueOf(0);
+            }
+
+            // Upload to firestore
+            Map<String, Object> product = new HashMap<>();
+            product.put("p_name", pName);
+            product.put("p_desc", pDesc);
+            product.put("p_price", Integer.valueOf(pPrice));
+            product.put("p_discount", Integer.valueOf(pDiscount));
+            product.put("user_id", fAuth.getCurrentUser().getUid());
+
+            db.collection("products")
+                    .add(product)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            uploadFile(documentReference);
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(AddProductActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
         }
     }
 }
