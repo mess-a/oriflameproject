@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -45,6 +47,11 @@ public class AllProductsAdapter extends RecyclerView.Adapter<AllProductsAdapter.
             public void onClick(View v) {
                 list.remove(position); // remove item from ui
                 docList.get(position).delete();
+
+                // Remove the image
+                StorageReference imageRef = FirebaseStorage.getInstance().getReference().child("images/" + docList.get(position).getId() + ".jpg");
+                imageRef.delete();
+
                 docList.remove(position);
                 notifyDataSetChanged();
             }
