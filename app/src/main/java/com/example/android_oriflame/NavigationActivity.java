@@ -97,15 +97,6 @@ public class NavigationActivity extends AppCompatActivity {
                 finish();
                 break;
 
-            case R.id.facebookPage:
-                url = "http://www.facebook.com"; // Facebook link dahna tur
-                uri = Uri.parse(url);
-                intent = new Intent(Intent.ACTION_VIEW, uri);
-                if (intent.resolveActivity(getPackageManager()) != null) {
-                    startActivity(intent);
-                }
-                break;
-
             case R.id.instagramPage:
                 url = "http://www.intagram.com"; // Instagram link dahna tur
                 uri = Uri.parse(url);

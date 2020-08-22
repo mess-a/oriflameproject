@@ -5,18 +5,30 @@
             android:id="@+id/homePage"
             android:icon="@drawable/ic_person"
             android:title="Home" />
+
         <item
-            android:id="@+id/facebookPage"
+            android:id="@+id/wishlist"
             android:icon="@drawable/ic_person"
-            android:title="Facebook" />
+            android:title="Wishlist"/>
+
         <item
             android:id="@+id/instagramPage"
             android:icon="@drawable/ic_person"
-            android:title="Instagram" />
+            android:title="Edit Profile" />
+
+        <item
+            android:id="@+id/share"
+            android:icon="@drawable/ic_person"
+            android:title="Share"/>
+        <item
+            android:id="@+id/facebookPage"
+            android:icon="@drawable/ic_person"
+            android:title="About Us" />
+
         <item
             android:id="@+id/logout"
-            android:icon="@drawable/ic_person"
-            android:title="Logout"/>
+            android:icon="@drawable/logout"
+            android:title="logout"/>
     </group>
 
     <item android:title="Admin" android:id="@+id/admin_menu" android:visible="false">
