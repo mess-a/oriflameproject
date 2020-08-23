@@ -75,10 +75,19 @@
 
             </LinearLayout>
 
+            <Spinner
+                android:id="@+id/cat_spinner"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/price_holder"
+                android:entries="@array/oriflame_cats"
+                android:prompt="@string/cat_prompt" />
+
             <Button
                 android:id="@+id/image_select_button"
                 android:layout_width="350dp"
-                android:layout_below="@+id/price_holder"
+                android:layout_below="@+id/cat_spinner"
                 android:layout_centerHorizontal="true"
                 android:text="Choose Image"
                 android:layout_height="wrap_content" />

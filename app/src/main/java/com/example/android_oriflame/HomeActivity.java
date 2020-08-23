@@ -10,7 +10,6 @@ import android.util.Log;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
-import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -28,6 +27,7 @@ public class HomeActivity extends NavigationActivity {
     StorageReference storageRef;
     private ArrayList<Map<String, Object>> list;
     private ArrayList<RequestBuilder<Drawable>> images;
+    private ArrayList<String> product_ids;
     private RecyclerView product_list;
     private RecyclerView.LayoutManager layoutManager;
     private HomeProductsAdapter adapter;
@@ -43,9 +43,10 @@ public class HomeActivity extends NavigationActivity {
         this.storageRef = FirebaseStorage.getInstance().getReference();
         this.list = new ArrayList<>();
         this.images = new ArrayList<>();
+        this.product_ids = new ArrayList<>();
 
         this.product_list = findViewById(R.id.home_products);
-        this.adapter = new HomeProductsAdapter(this.list, this.images);
+        this.adapter = new HomeProductsAdapter(this.list, this.images, getApplicationContext(), this.product_ids);
         this.layoutManager = new GridLayoutManager(this, 2);
         this.product_list.setLayoutManager(this.layoutManager);
         this.product_list.setAdapter(this.adapter);
@@ -61,6 +62,7 @@ public class HomeActivity extends NavigationActivity {
                                 if (!document.getData().isEmpty()) {
                                     list.add(document.getData());
                                     images.add(getImage(document.getId()));
+                                    product_ids.add(document.getId());
                                 }
                                 adapter.notifyDataSetChanged();
                             }

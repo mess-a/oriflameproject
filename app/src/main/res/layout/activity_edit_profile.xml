@@ -40,8 +40,8 @@
                 android:src="@drawable/profile" />
 
             <ImageView
-                android:layout_width="50"
-                android:layout_height="50"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_gravity="bottom|right"
                 android:src="@drawable/edit_tool" />
         </FrameLayout>
@@ -60,14 +60,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:gravity="true"
             android:paddingLeft="25dp"
             android:text="Name"
             android:textColor="#4D5856"
             android:textSize="20dp" />
 
         <EditText
-            android:layout_width="350"
+            android:layout_width="350dp"
             android:layout_height="45dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
@@ -82,15 +81,13 @@
             android:layout_height="45dp"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="218dp"
-            android:gravity="true"
             android:paddingLeft="25dp"
-            android:paddingTop=""
             android:text="Mobile number"
             android:textColor="#4D5856"
             android:textSize="20dp" />
 
         <EditText
-            android:layout_width="350"
+            android:layout_width="350dp"
             android:layout_height="45dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
@@ -105,14 +102,13 @@
             android:layout_height="45dp"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="126dp"
-            android:gravity="true"
             android:paddingLeft="25dp"
             android:text="Location"
             android:textColor="#4D5856"
             android:textSize="20dp" />
 
         <EditText
-            android:layout_width="350"
+            android:layout_width="350dp"
             android:layout_height="45dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
@@ -127,14 +123,13 @@
             android:layout_height="45dp"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="36dp"
-            android:gravity="true"
             android:paddingLeft="25dp"
             android:text="Email"
             android:textColor="#4D5856"
             android:textSize="20dp" />
 
         <EditText
-            android:layout_width="350"
+            android:layout_width="350dp"
             android:layout_height="45dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
@@ -142,20 +137,10 @@
             android:layout_marginEnd="37dp"
             android:layout_marginRight="37dp"
             android:layout_marginBottom="-10dp"
-            android:paddingTop="50dp"
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="126dp"
-            android:gravity="true"
-            android:paddingLeft="25dp"
-            android:text="Location"
-            android:textColor="#4D5856"
-            android:textSize="20dp" />
+            android:paddingTop="50dp"/>
 
         <EditText
-            android:layout_width="350"
+            android:layout_width="350dp"
             android:layout_height="45dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"

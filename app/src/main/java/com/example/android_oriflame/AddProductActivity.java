@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,6 +36,8 @@ public class AddProductActivity extends NavigationActivity implements View.OnCli
     private ProgressBar progressBar;
     private String fileName;
     private FirebaseFirestore db;
+    private Spinner cat_spinner;
+    private String cat_spinner_data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,19 @@ public class AddProductActivity extends NavigationActivity implements View.OnCli
         this.bImage = findViewById(R.id.image_select_button);
         this.bUpload = findViewById(R.id.upload_button);
         this.progressBar = findViewById(R.id.upload_progress);
+        this.cat_spinner = findViewById(R.id.cat_spinner);
+
+        this.cat_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                cat_spinner_data = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         super.bootstrapNav();
 
@@ -137,6 +154,7 @@ public class AddProductActivity extends NavigationActivity implements View.OnCli
             product.put("p_desc", pDesc);
             product.put("p_price", Integer.valueOf(pPrice));
             product.put("p_discount", Integer.valueOf(pDiscount));
+            product.put("p_cat", cat_spinner_data);
             product.put("user_id", fAuth.getCurrentUser().getUid());
 
             db.collection("products")

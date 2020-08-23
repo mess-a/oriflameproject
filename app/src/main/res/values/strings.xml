@@ -2,4 +2,13 @@
     <string name="app_name">Oriflame Assistance</string>
     <string name="drawer_open">Drawer Open</string>
     <string name="drawer_close">Drawer Close</string>
+    <string-array name="oriflame_cats">
+        <item>Body</item>
+        <item>Make Up</item>
+        <item>Wellness</item>
+        <item>Perfume</item>
+        <item>Bodyspray</item>
+        <item>Lipstick</item>
+    </string-array>
+    <string name="cat_prompt">Choose a category</string>
 </resources>
