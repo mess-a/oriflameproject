@@ -19,37 +19,155 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_back1" />
     </LinearLayout>
+
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="230dp"
+        android:layout_marginTop="71dp"
         android:orientation="vertical"
-        android:layout_marginTop="73dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <ImageView
                 android:layout_width="350dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/profile"/>
+                android:src="@drawable/profile" />
+
             <ImageView
                 android:layout_width="50"
                 android:layout_height="50"
-                android:src="@drawable/edit_tool"
-                android:layout_gravity="bottom|right" />
+                android:layout_gravity="bottom|right"
+                android:src="@drawable/edit_tool" />
         </FrameLayout>
 
     </LinearLayout>
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_marginTop="400dp"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="357dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="0dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:gravity="true"
+            android:paddingLeft="25dp"
+            android:text="Name"
+            android:textColor="#4D5856"
+            android:textSize="20dp" />
+
+        <EditText
+            android:layout_width="350"
+            android:layout_height="45dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="35dp"
+            android:layout_marginRight="33dp"
+            android:layout_marginBottom="266dp"
+            android:paddingTop="50dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="218dp"
+            android:gravity="true"
+            android:paddingLeft="25dp"
+            android:paddingTop=""
+            android:text="Mobile number"
+            android:textColor="#4D5856"
+            android:textSize="20dp" />
+
+        <EditText
+            android:layout_width="350"
+            android:layout_height="45dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_marginBottom="171dp"
+            android:paddingTop="50dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="126dp"
+            android:gravity="true"
+            android:paddingLeft="25dp"
+            android:text="Location"
+            android:textColor="#4D5856"
+            android:textSize="20dp" />
+
+        <EditText
+            android:layout_width="350"
+            android:layout_height="45dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="34dp"
+            android:layout_marginRight="34dp"
+            android:layout_marginBottom="82dp"
+            android:paddingTop="50dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="36dp"
+            android:gravity="true"
+            android:paddingLeft="25dp"
+            android:text="Email"
+            android:textColor="#4D5856"
+            android:textSize="20dp" />
+
+        <EditText
+            android:layout_width="350"
+            android:layout_height="45dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="37dp"
+            android:layout_marginRight="37dp"
+            android:layout_marginBottom="-10dp"
+            android:paddingTop="50dp"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="126dp"
+            android:gravity="true"
+            android:paddingLeft="25dp"
+            android:text="Location"
+            android:textColor="#4D5856"
+            android:textSize="20dp" />
+
+        <EditText
+            android:layout_width="350"
+            android:layout_height="45dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="34dp"
+            android:layout_marginRight="34dp"
+            android:layout_marginBottom="82dp"
+            android:paddingTop="50dp" />
+
+
+
+    </RelativeLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
