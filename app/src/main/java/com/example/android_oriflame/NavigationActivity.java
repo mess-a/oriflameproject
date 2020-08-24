@@ -97,15 +97,6 @@ public class NavigationActivity extends AppCompatActivity {
                 finish();
                 break;
 
-            case R.id.instagramPage:
-                url = "http://www.intagram.com"; // Instagram link dahna tur
-                uri = Uri.parse(url);
-                intent = new Intent(Intent.ACTION_VIEW, uri);
-                if (intent.resolveActivity(getPackageManager()) != null) {
-                    startActivity(intent);
-                }
-                break;
-
             case R.id.logout:
                 // Signout
                 fAuth.signOut();
@@ -123,6 +114,20 @@ public class NavigationActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), AddProductActivity.class));
                 finish();
                 break;
+
+            case R.id.editProfile:
+                Intent i = new Intent(getApplicationContext(), editProfile.class);
+                startActivity(i);
+                break;
+
+            case R.id.wishlist:
+                startActivity(new Intent(getApplicationContext(), WishlistActivity.class));
+                finish();
+                break;
+            case R.id.aboutus:
+                startActivity(new Intent(getApplicationContext(), WishlistActivity.class));
+                finish();
+               break;
         }
     }
 

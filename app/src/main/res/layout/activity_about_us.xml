@@ -22,26 +22,10 @@
                 android:id="@+id/toolBar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:layout_scrollFlags="scroll|enterAlways" />
 
         </com.google.android.material.appbar.AppBarLayout>
-
-        <RelativeLayout
-            android:id="@+id/relativeLayout"
-            android:paddingTop="80dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/aboutus"
-                android:inputType="textMultiLine"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="asdkljalkdjalskdjlaksjdlkasdjladjlkasjdklasjdkl"/>
-
-        </RelativeLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

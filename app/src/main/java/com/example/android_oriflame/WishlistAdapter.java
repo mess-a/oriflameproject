@@ -1,7 +1,5 @@
 package com.example.android_oriflame;
 
-import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,21 +15,17 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class AllProductsAdapter extends RecyclerView.Adapter<AllProductsAdapter.ProductViewHolder> {
+public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ProductViewHolder> {
 
     private ArrayList<QueryDocumentSnapshot> list;
     private ArrayList<DocumentReference> docList;
-    private Context context;
-    private ArrayList<String> product_id;
 
-    public AllProductsAdapter(ArrayList<QueryDocumentSnapshot> list, ArrayList<DocumentReference> docList, Context context) {
+    public WishlistAdapter(ArrayList<QueryDocumentSnapshot> list, ArrayList<DocumentReference> docList) {
         this.list = list;
         this.docList = docList;
-        this.context = context;
     }
 
     @NonNull
@@ -45,7 +39,7 @@ public class AllProductsAdapter extends RecyclerView.Adapter<AllProductsAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, final int position) {
-        final Map<String, Object> data = list.get(position).getData();
+        Map<String, Object> data = list.get(position).getData();
 
         holder.name.setText(data.get("p_name").toString());
         holder.delete_button.setOnClickListener(new View.OnClickListener() {
@@ -62,19 +56,6 @@ public class AllProductsAdapter extends RecyclerView.Adapter<AllProductsAdapter.
                 notifyDataSetChanged();
             }
         });
-
-        // Calculate Discount
-        final int discountRate = Integer.valueOf(data.get("p_discount").toString());
-        int discountPrice = 0;
-        int discount = 0;
-        int price = Integer.valueOf(data.get("p_price").toString());
-        if (discountRate > 0) {
-            discount = Math.round((discountRate * price) / 100);
-            discountPrice = price - discount;
-        }
-
-        final int finalDiscountPrice = discountPrice;
-
     }
 
     @Override

@@ -53,7 +53,7 @@ public class HomeProductsAdapter extends RecyclerView.Adapter<HomeProductsAdapte
         image.into(holder.image);
 
         // Calculate Discount
-        int discountRate = Integer.valueOf(product.get("p_discount").toString());
+        final int discountRate = Integer.valueOf(product.get("p_discount").toString());
         int discountPrice = 0;
         int discount = 0;
         int price = Integer.valueOf(product.get("p_price").toString());
@@ -71,7 +71,11 @@ public class HomeProductsAdapter extends RecyclerView.Adapter<HomeProductsAdapte
                 intent.putExtra("p_id", product_ids.get(position));
                 intent.putExtra("p_name", product.get("p_name").toString());
                 intent.putExtra("p_desc", product.get("p_desc").toString());
-                intent.putExtra("p_price", finalDiscountPrice);
+                if (discountRate > 0) {
+                    intent.putExtra("p_price", String.valueOf(finalDiscountPrice));
+                } else {
+                    intent.putExtra("p_price", product.get("p_price").toString());
+                }
                 intent.putExtra("p_cat", product.get("p_cat").toString());
                 context.getApplicationContext().startActivity(intent);
             }

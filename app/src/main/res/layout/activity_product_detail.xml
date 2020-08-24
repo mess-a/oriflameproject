@@ -84,6 +84,18 @@
     android:gravity="center_horizontal"
     android:layout_marginBottom="40dp">
     <Button
+        android:id="@+id/goToWishlistButton"
+        android:visibility="gone"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:background="#80938F"
+        android:layout_marginRight="5dp"
+        android:padding="16dp"
+        android:paddingRight="16dp"
+        android:text="View Wishlist"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF" />
+    <Button
         android:id="@+id/wishlistButton"
         android:layout_width="150dp"
         android:layout_height="50dp"

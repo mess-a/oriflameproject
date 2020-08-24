@@ -6,18 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".editProfile">
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="70dp"
+        android:orientation="horizontal"
         android:background="@drawable/background">
+
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_back1" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -42,117 +43,99 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
                 android:layout_gravity="bottom|right"
                 android:src="@drawable/edit_tool" />
         </FrameLayout>
 
     </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="357dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ScrollView
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="1.0"
-        tools:layout_editor_absoluteX="0dp">
-
-        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="350dp">
+        <LinearLayout
+            android:paddingTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:paddingLeft="25dp"
-            android:text="Name"
-            android:textColor="#4D5856"
-            android:textSize="20dp" />
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            >
 
-        <EditText
-            android:layout_width="350dp"
-            android:layout_height="45dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="35dp"
-            android:layout_marginRight="33dp"
-            android:layout_marginBottom="266dp"
-            android:paddingTop="50dp" />
+            <TextView
+                android:id="@+id/nametext"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textColor="#4D5856"
+                android:textSize="20dp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="218dp"
-            android:paddingLeft="25dp"
-            android:text="Mobile number"
-            android:textColor="#4D5856"
-            android:textSize="20dp" />
+            <EditText
+                android:id="@+id/nameedit"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"/>
 
-        <EditText
-            android:layout_width="350dp"
-            android:layout_height="45dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="35dp"
-            android:layout_marginRight="35dp"
-            android:layout_marginBottom="171dp"
-            android:paddingTop="50dp" />
+            <TextView
+                android:id="@+id/numbertext"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:text="Mobile number"
+                android:textColor="#4D5856"
+                android:textSize="20dp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="126dp"
-            android:paddingLeft="25dp"
-            android:text="Location"
-            android:textColor="#4D5856"
-            android:textSize="20dp" />
+            <EditText
+                android:id="@+id/numberedit"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"/>
 
-        <EditText
-            android:layout_width="350dp"
-            android:layout_height="45dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="34dp"
-            android:layout_marginRight="34dp"
-            android:layout_marginBottom="82dp"
-            android:paddingTop="50dp" />
+            <TextView
+                android:id="@+id/locationtext"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:text="Location"
+                android:textColor="#4D5856"
+                android:textSize="20dp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="36dp"
-            android:paddingLeft="25dp"
-            android:text="Email"
-            android:textColor="#4D5856"
-            android:textSize="20dp" />
+            <EditText
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/locationedit"/>
 
-        <EditText
-            android:layout_width="350dp"
-            android:layout_height="45dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="37dp"
-            android:layout_marginRight="37dp"
-            android:layout_marginBottom="-10dp"
-            android:paddingTop="50dp"/>
+            <TextView
+                android:id="@+id/emailtext"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textColor="#4D5856"
+                android:textSize="20dp" />
 
-        <EditText
-            android:layout_width="350dp"
-            android:layout_height="45dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="34dp"
-            android:layout_marginRight="34dp"
-            android:layout_marginBottom="82dp"
-            android:paddingTop="50dp" />
+            <EditText
+                android:id="@+id/emailedit"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"/>
 
+            <TextView
+                android:id="@+id/dobtext"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:text="D.O.B"
+                android:textColor="#4D5856"
+                android:textSize="20dp" />
 
+            <EditText
+                android:id="@+id/dobedit"
+                android:layout_width="350dp"
+                android:inputType="date"
+                android:layout_height="wrap_content"/>
 
-    </RelativeLayout>
+            <Button
+                android:id="@+id/saveProfileButton"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:text="Save" />
 
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

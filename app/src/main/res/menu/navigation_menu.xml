@@ -12,7 +12,8 @@
             android:title="Wishlist"/>
 
         <item
-            android:id="@+id/instagramPage"
+            android:id="@+id/editProfile"
+            android:visible="false"
             android:icon="@drawable/ic_person"
             android:title="Edit Profile" />
 
@@ -21,7 +22,7 @@
             android:icon="@drawable/ic_person"
             android:title="Share"/>
         <item
-            android:id="@+id/facebookPage"
+            android:id="@+id/aboutus"
             android:icon="@drawable/ic_person"
             android:title="About Us" />
 
