@@ -27,7 +27,7 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <RelativeLayout
-            android:id="@+id/relativeLayout"
+            android:id="@+id/products_list"
             android:paddingTop="80dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">

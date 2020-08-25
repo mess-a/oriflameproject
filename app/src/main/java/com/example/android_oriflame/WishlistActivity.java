@@ -47,7 +47,7 @@ public class WishlistActivity extends NavigationActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all_products);
+        setContentView(R.layout.activity_wishlist);
 
         this.page_name = "Wishlist";
 
@@ -63,7 +63,7 @@ public class WishlistActivity extends NavigationActivity {
         this.wishlistProducts = new ArrayList<>();
         this.docList = new ArrayList<>();
         this.noItems = findViewById(R.id.noItems);
-        this.product_list = findViewById(R.id.products_list);
+        this.product_list = findViewById(R.id.wishlist_products);
         this.adapter = new WishlistAdapter(this.arrayList, this.docList);
         this.layoutManager = new LinearLayoutManager(this);
         this.product_list.setLayoutManager(this.layoutManager);
