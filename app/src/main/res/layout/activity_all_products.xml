@@ -26,22 +26,12 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <RelativeLayout
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/products_list"
             android:paddingTop="80dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/aboutus"
-                android:inputType="textMultiLine"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="asdkljalkdjalskdjlaksjdlkasdjladjlkasjdklasjdkl"/>
-
-        </RelativeLayout>
+        </androidx.recyclerview.widget.RecyclerView>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

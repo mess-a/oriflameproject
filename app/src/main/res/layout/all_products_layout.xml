@@ -12,14 +12,6 @@
         android:layout_height="wrap_content"
         android:text="No items!"/>
 
-    <TextView
-        android:layout_gravity="center"
-        android:id="@+id/noItems"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="No items!"/>
-
     <Button
         android:id="@+id/delete_button"
         android:text="Delete"

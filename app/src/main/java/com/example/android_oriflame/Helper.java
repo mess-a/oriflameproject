@@ -6,7 +6,7 @@ public class Helper {
     private static FirebaseAuth fAuth = FirebaseAuth.getInstance();
 
     public static boolean isAdmin() {
-        String[] admins = { "alalfakawma@gmail.com", "malsawmatlau4@gmail.com" };
+        String[] admins = { "alalfakawma@gmail.com", "malsawmatlau4@gmail.com", "nickiminajsailo111@gmail.com" };
 
         String email = fAuth.getCurrentUser().getEmail();
 

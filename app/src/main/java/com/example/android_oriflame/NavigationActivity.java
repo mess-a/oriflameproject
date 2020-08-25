@@ -91,7 +91,9 @@ public class NavigationActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            pName.setText(task.getResult().getDocuments().get(0).get("user_name").toString());
+                            if (!task.getResult().isEmpty()) {
+                                pName.setText(task.getResult().getDocuments().get(0).get("user_name").toString());
+                            }
                         }
                     }
                 });
