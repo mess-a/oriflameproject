@@ -84,7 +84,7 @@ public class NavigationActivity extends AppCompatActivity {
         // Profile Email
         final TextView pName = navView.findViewById(R.id.profile_name);
         pName.setText(fAuth.getCurrentUser().getEmail());
-        db.collection("users")
+        db.collection("user_data")
                 .whereEqualTo("id", fAuth.getCurrentUser().getUid())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
