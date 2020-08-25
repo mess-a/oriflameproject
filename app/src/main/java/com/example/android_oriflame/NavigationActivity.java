@@ -84,6 +84,17 @@ public class NavigationActivity extends AppCompatActivity {
         // Profile Email
         final TextView pName = navView.findViewById(R.id.profile_name);
         pName.setText(fAuth.getCurrentUser().getEmail());
+        db.collection("users")
+                .whereEqualTo("id", fAuth.getCurrentUser().getUid())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            pName.setText(task.getResult().getDocuments().get(0).get("user_name").toString());
+                        }
+                    }
+                });
     }
 
     private void UserMenuSelector(MenuItem item) {
